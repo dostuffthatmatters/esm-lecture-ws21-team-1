@@ -74,4 +74,4 @@ if __name__ == "__main__":
     print(df)
     print(df.columns)
 
-    df.to_csv("export.csv", na_rep="NaN", float_format="%.0f")
+    df.to_csv("data/NO2_merged.csv", na_rep="NaN", float_format="%.0f")

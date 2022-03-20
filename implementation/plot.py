@@ -28,11 +28,12 @@ def plot_scatterly(
     p.set_title(title)
     p.set_xlabel(x_label)
     p.set_ylabel(y_label)
-    plt.ylim(0, 300)
+    plt.ylim(0, 250)
     if save:
         plt.savefig(f"renders/{title.lower().replace(' ', '_')}.png")
     if show:
         plt.show()
+    plt.close()
 
 
 def get_weekday_from_str(s):
@@ -126,3 +127,11 @@ if __name__ == "__main__":
     for year in range(2010, 2022):
         local_df = filter_df_years(df, include=[str(year)])
         plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
+
+    for year in range(2016, 2020):
+        for month in range(1, 12):
+            local_df = filter_df_years(df, include=[str(year)])
+            local_df = filter_df_months(df, include=[str(month).zfill(2)])
+            plot_weekdays_color_monthly(
+                local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
+            )

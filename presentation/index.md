@@ -13,8 +13,76 @@ paginate: false
 paginate: true
 -->
 
-Veniam incididunt enim qui ullamco voluptate ullamco elit dolor cillum exercitation tempor quis. Irure ut velit magna et veniam in nisi. Duis qui amet incididunt occaecat fugiat cillum aute dolor ut nostrud dolore magna adipisicing. Ad in nisi officia ea adipisicing adipisicing pariatur cupidatat culpa in est et.
+## Task 1: Visit the site
 
 ---
 
-Magna do officia magna officia deserunt aute est veniam ullamco nisi. Consectetur nostrud id culpa amet ea id dolor aliqua nisi in aliquip aliquip exercitation. Occaecat fugiat excepteur elit elit culpa tempor proident reprehenderit nulla sunt adipisicing et deserunt consequat. Ipsum amet elit aute anim mollit.
+_PICTURE OF GOOGLE MAPS_
+
+---
+
+_PICTURES OF STATION_
+
+---
+
+_ANSWERED QUESTIONS_
+
+---
+
+## Task 2: Analyze the data
+
+---
+
+...
+
+---
+
+## Additional work: MORE DATA!
+
+---
+
+_LFU DATA SOURCE_
+
+Image + Link
+
+<!-- I will talk about the data license at the end -->
+
+---
+
+_LFU DATA PREPARATION_
+
+1. Replace cells like `?`, `#` or noting in it with `NaN`
+2. Remove locations not of interest
+3. Merge all data into one CSV file
+
+---
+
+_COLOR GRADIENT BASED ON YEAR_
+
+---
+
+_COLOR GRADIENT BASED ON YEAR WITH ROLLING MEAN FOR EACH YEAR_
+
+---
+
+_COLOR GRADIENT BASED ON MONTH TEMPERATURE_
+
+_TWO PLOTS -> 2015 and 2016_
+
+---
+
+_DWD DATA SOURCE_
+
+---
+
+_DWD DATA PREPARATION_
+
+---
+
+_DATA LICENSE_
+
+---
+
+_OPEN SOURCE_
+
+---

@@ -65,13 +65,15 @@ if __name__ == "__main__":
             if df is not None:
                 dfs.append(df)
 
-    for year in range(2010, 2021):
+    for year in range(2010, 2023):
         df = create_luf_df(year, None, "München")
         if df is not None:
             dfs.append(df)
 
-    df = pd.concat(dfs, axis=0, join="outer").sort_index()
-    print(df)
-    print(df.columns)
+    df = pd.concat(dfs, axis=0, join="outer").reset_index()
+    df["date"] = df["Zeitpunkt"].map(lambda x: x[6:10] + x[3:5] + x[0:2])
+    df["hour"] = df["Zeitpunkt"].map(lambda x: x[11:13])
+    del df["Zeitpunkt"]
+    df = df.set_index(["date", "hour"]).sort_index()
 
     df.to_csv("data/LUF_merged.csv", na_rep="NaN", float_format="%.0f")

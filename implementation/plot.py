@@ -1,4 +1,5 @@
 from cProfile import label
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -47,15 +48,16 @@ def plot_scatterly(
     plt.close()
 
 
-def get_weekday_from_str(s):
+def get_weekday_from_index(index):
+    di, hi = index
     add_timedelta = False
-    if s[11:13] == "24":
-        s = s[:11] + "00" + s[13:]
+    if hi == 24:
+        hi = 0
         add_timedelta = True
-    d = datetime.strptime(s, "%d.%m.%Y %H:%M")
+    d = datetime.strptime(str(di), "%Y%m%d")
     if add_timedelta:
         d += timedelta(days=1)
-    return d.weekday() + (d.hour / 24)
+    return d.weekday() + (hi / 24)
 
 
 def filter_df_years(
@@ -129,13 +131,11 @@ def plot_weekdays_color_monthly(df, title: str = ""):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("data/LUF_merged.csv").set_index("Zeitpunkt")
+    df = pd.read_csv("data/LUF_merged.csv").set_index(["date", "hour"])
 
-    df["weekday"] = df.index.map(get_weekday_from_str)
-    df["day"] = df.index.map(lambda x: x[0:2])
-    df["month"] = df.index.map(lambda x: x[3:5])
-    df["year"] = df.index.map(lambda x: x[6:10])
-    df["hour"] = df.index.map(lambda x: x[11:13])
+    df["weekday"] = df.index.map(get_weekday_from_index)
+    df["month"] = df.index.map(lambda x: str(x[0])[4:6])
+    df["year"] = df.index.map(lambda x: str(x[0])[0:4])
 
     plot_weekdays_color_yearly(df, title=f"Weekly Cycle")
 

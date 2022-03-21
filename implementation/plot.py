@@ -30,7 +30,7 @@ def plot_scatterly(
     p.set_ylabel(y_label)
     plt.ylim(0, 250)
     if save:
-        plt.savefig(f"renders/{title.lower().replace(' ', '_')}.png")
+        plt.savefig(f"renders/images/{title.lower().replace(' ', '_')}.png")
     if show:
         plt.show()
     plt.close()

@@ -1,5 +1,4 @@
-from cProfile import label
-import sys
+import warnings
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -9,6 +8,7 @@ CIRCLE_SIZE = 4
 CIRCLE_ALPHA = 0.5
 pd.options.mode.chained_assignment = None
 plt.style.use("seaborn")
+warnings.simplefilter(action="ignore", category=FutureWarning)
 
 
 def plot_scatterly(
@@ -256,6 +256,51 @@ def plot_concentration_over_weather(df, year=None):
     plt.close()
 
 
+def plot_rolling_concentration_over_weather(df):
+    plt.rcParams["figure.figsize"] = (12, 9)
+    plt.suptitle("Air Quality at München/Landshuter Allee", fontsize=15)
+    defaults = {
+        "y": "München/Landshuter Allee",
+        "y_label": "NO2 [µg/m3] 1h-MW",
+        "color_by": "year",
+        "close": False,
+        "save": False,
+    }
+
+    def plot_rolling(x, x_label):
+        for year in range(2010, 2022):
+            local_df = df[df["year"] == str(year)].sort_values(by=[x])
+            local_df["München/Landshuter Allee"] = local_df.rolling(500, on=x).mean()[
+                "München/Landshuter Allee"
+            ]
+            plot_scatterly(
+                local_df,
+                x=x,
+                x_label=x_label,
+                **defaults,
+                kind="line",
+            )
+
+    # upper left
+    plt.subplot(2, 2, 1)
+    plot_rolling("temperature", "daily average temperature [°C]")
+
+    # upper right
+    plt.subplot(2, 2, 2)
+    plot_rolling("precipitation", "daily precipitation [mm]")
+
+    # lower left
+    plt.subplot(2, 2, 3)
+    plot_rolling("sunshine", "daily sunshine hours")
+
+    # lower right
+    plt.subplot(2, 2, 4)
+    plot_rolling("wind", "daily average wind speed [m/s]")
+
+    plt.savefig(f"renders/images/rolling_concentration_over_weather_conditions.png")
+    plt.close()
+
+
 if __name__ == "__main__":
     luf_df = pd.read_csv("data/LUF_merged.csv").set_index(["date", "hour"])
     dwd_df = pd.read_csv("data/DWD_merged.csv").set_index(["date"])
@@ -274,6 +319,9 @@ if __name__ == "__main__":
     plot_mean_monthwise_weekly_cycle_colored_by_month(df)
 
     plot_concentration_over_weather(df)
+
     for year in range(2010, 2021):
         local_df = filter_df_years(df, include=[str(year)])
         plot_concentration_over_weather(local_df, year=year)
+
+    plot_rolling_concentration_over_weather(df)

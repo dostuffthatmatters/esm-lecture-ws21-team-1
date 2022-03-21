@@ -25,15 +25,37 @@ paginate: true
 
 ---
 
-_PICTURE OF GOOGLE MAPS_
+Station located at **Landshuter Allee**:
+
+![h:550 center](images/station-map.png)
 
 ---
 
-_PICTURES OF STATION_
+![h:600 center](images/station-image-1.jpg)
 
 ---
 
-_ANSWERED QUESTIONS_
+![h:600 center](images/station-image-3.jpg)
+
+<!--
+The road is 8 lanes wide at that location.
+
+CO2 Boxes next to the station.
+TODO: What are they?
+
+-->
+
+---
+
+## Are all the requirements of the 39. BImSchV fulfilled?
+
+-   Maximum distance to the street: 10 m
+-   Minimum distance to the crossroad: 25 m
+-   Height of the measurement inlet: 1.5 to 4 m
+
+---
+
+## Do you think that this particular station is representative of the city/for the background?
 
 ---
 

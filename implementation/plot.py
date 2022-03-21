@@ -22,6 +22,7 @@ def plot_scatterly(
     save: bool = True,
     close: bool = True,
     color_by: str = "",
+    kind: str = "scatter",
 ):
     if color_by == "month":
         df["color"] = df["month"].map(month_to_rgb)
@@ -30,13 +31,18 @@ def plot_scatterly(
         df["color"] = df["year"].map(year_to_rgb)
         red_label, blue_label = "2022", "2010"
 
-    plt.scatter(
-        x=list(df[x]),
-        y=list(df[y]),
-        c=list(df["color"]),
-        alpha=CIRCLE_ALPHA,
-        s=CIRCLE_SIZE,
-    )
+    if kind == "scatter":
+        plt.scatter(
+            x=list(df[x]),
+            y=list(df[y]),
+            c=list(df["color"]),
+            alpha=CIRCLE_ALPHA,
+            s=CIRCLE_SIZE,
+        )
+    else:
+        for year in range(2010, 2023):
+            local_df = df[df["year"] == str(year)]
+            plt.plot(list(local_df[x]), list(local_df[y]), color=year_to_rgb(year))
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
@@ -171,6 +177,41 @@ def plot_concentration_over_weather(df, year=None):
     plt.close()
 
 
+def plot_alltime_weekly_cycle(df):
+    plt.rcParams["figure.figsize"] = (15, 5)
+    plt.suptitle("Air Quality at München/Landshuter Allee - Weekly Cycle", fontsize=15)
+    defaults = {
+        "x": "weekday",
+        "y": "München/Landshuter Allee",
+        "y_label": "NO2 [µg/m3] 1h-MW",
+        "x_label": "Day of Week (0=Monday Morning, 7=Sunday Evening)",
+        "color_by": "year",
+        "close": False,
+        "save": False,
+    }
+
+    # only include years where we have all year data
+    df = filter_df_years(df, exclude=["2022"])
+
+    df_averaged_by_weekday = df.groupby(["year", "weekday"]).mean().reset_index()
+
+    # left
+    plt.subplot(1, 2, 1)
+    plot_scatterly(df, **defaults, title="raw data points")
+
+    # right
+    plt.subplot(1, 2, 2)
+    plot_scatterly(
+        df_averaged_by_weekday,
+        **defaults,
+        title="mean at each time of day",
+        kind="line",
+    )
+
+    plt.savefig(f"renders/images/alltime_weekly_cycle.png")
+    plt.close()
+
+
 if __name__ == "__main__":
     luf_df = pd.read_csv("data/LUF_merged.csv").set_index(["date", "hour"])
     dwd_df = pd.read_csv("data/DWD_merged.csv").set_index(["date"])
@@ -180,21 +221,8 @@ if __name__ == "__main__":
     df["month"] = df.index.map(lambda x: str(x[0])[4:6])
     df["year"] = df.index.map(lambda x: str(x[0])[0:4])
 
-    # summer_df = filter_df_months(df, include=["04", "05", "06", "07", "08", "09"])
-    plot_concentration_over_weather(df)
-    for year in range(2010, 2021):
-        local_df = filter_df_years(df, include=[str(year)])
-        plot_concentration_over_weather(local_df, year=year)
+    plot_alltime_weekly_cycle(df)
 
-    # plot_weekdays_color_yearly(df, title=f"Weekly Cycle")
-    #
-    # df_averaged_by_weekday = df.groupby(["year", "weekday"]).mean().reset_index()
-    # plot_weekdays_color_yearly(df_averaged_by_weekday, title=f"Averaged Weekly # Cycle")
-    #
-    # for year in range(2010, 2022):
-    #     local_df = filter_df_years(df, include=[str(year)])
-    #     plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
-    #
     # for year in range(2016, 2020):
     #     for month in range(1, 13):
     #         local_df = filter_df_years(df, include=[str(year)])
@@ -202,3 +230,8 @@ if __name__ == "__main__":
     #         plot_weekdays_color_monthly(
     #             local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
     #         )
+
+    plot_concentration_over_weather(df)
+    for year in range(2010, 2021):
+        local_df = filter_df_years(df, include=[str(year)])
+        plot_concentration_over_weather(local_df, year=year)

@@ -6,7 +6,7 @@ from matplotlib.lines import Line2D
 from datetime import datetime, timedelta
 
 CIRCLE_SIZE = 4
-CIRCLE_ALPHA = 0.4
+CIRCLE_ALPHA = 0.5
 pd.options.mode.chained_assignment = None
 plt.style.use("seaborn")
 
@@ -191,6 +191,33 @@ def plot_weekly_cycle_colored_by_month(df, month):
     plt.close()
 
 
+def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
+    plt.rcParams["figure.figsize"] = (12, 9)
+    plt.suptitle(f"Air Quality at München/Landshuter Allee", fontsize=15)
+    defaults = {
+        "x": "weekday",
+        "y": "München/Landshuter Allee",
+        "y_label": "NO2 [µg/m3] 1h-MW",
+        "x_label": "Day of Week (0=Monday Morning, 7=Sunday Evening)",
+        "color_by": "month",
+        "close": False,
+        "save": False,
+        "kind": "line",
+    }
+
+    for i in range(4):
+        plt.subplot(2, 2, i + 1)
+        local_df = filter_df_years(df, include=[str(2016 + i)])
+        plot_scatterly(
+            local_df.groupby(["year", "month", "weekday"]).mean().reset_index(),
+            **defaults,
+            title=str(2016 + i),
+        )
+
+    plt.savefig(f"renders/images/mean_monthwise_weekly_cycle_colored_by_month.png")
+    plt.close()
+
+
 def plot_concentration_over_weather(df, year=None):
     plt.rcParams["figure.figsize"] = (12, 9)
     plt.suptitle("Air Quality at München/Landshuter Allee", fontsize=15)
@@ -242,6 +269,8 @@ if __name__ == "__main__":
     for i in range(1, 13):
         month = str(i).zfill(2)
         plot_weekly_cycle_colored_by_month(filter_df_months(df, include=[month]), month)
+
+    plot_mean_monthwise_weekly_cycle_colored_by_month(df)
 
     plot_concentration_over_weather(df)
     for year in range(2010, 2021):

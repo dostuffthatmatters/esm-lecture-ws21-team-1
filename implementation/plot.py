@@ -59,6 +59,7 @@ def plot_scatterly(
             Line2D([0], [0], color=[1, 0, 0], lw=4),
         ],
         [blue_label, red_label],
+        loc="upper right",
     )
     plt.ylim(0, 250)
     if save:

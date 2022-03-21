@@ -21,8 +21,8 @@ def plot_scatterly(
     p = df.plot.scatter(
         x=x,
         y=y,
-        alpha=CIRCLE_ALPHA,
         c="color",
+        alpha=CIRCLE_ALPHA,
         s=CIRCLE_SIZE,
     )
     p.set_title(title)
@@ -122,16 +122,19 @@ if __name__ == "__main__":
     df["year"] = df.index.map(lambda x: x[6:10])
     df["hour"] = df.index.map(lambda x: x[11:13])
 
-    print(df)
+    plot_weekdays_color_yearly(df, title=f"Weekly Cycle")
 
-    for year in range(2010, 2022):
-        local_df = filter_df_years(df, include=[str(year)])
-        plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
+    df_averaged_by_weekday = df.groupby(["year", "weekday"]).mean().reset_index()
+    plot_weekdays_color_yearly(df_averaged_by_weekday, title=f"Averaged Weekly Cycle")
 
-    for year in range(2016, 2020):
-        for month in range(1, 12):
-            local_df = filter_df_years(df, include=[str(year)])
-            local_df = filter_df_months(df, include=[str(month).zfill(2)])
-            plot_weekdays_color_monthly(
-                local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
-            )
+    # for year in range(2010, 2022):
+    #     local_df = filter_df_years(df, include=[str(year)])
+    #     plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
+
+    # for year in range(2016, 2020):
+    #     for month in range(1, 12):
+    #         local_df = filter_df_years(df, include=[str(year)])
+    #         local_df = filter_df_months(df, include=[str(month).zfill(2)])
+    #         plot_weekdays_color_monthly(
+    #             local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
+    #         )

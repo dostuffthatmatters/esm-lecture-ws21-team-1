@@ -51,7 +51,7 @@ Image + Link
 
 _LFU DATA PREPARATION_
 
-1. Replace cells like `?`, `#` or noting in it with `NaN`
+1. Replace cells like `?`, `#` or nothing in it with `NaN`
 2. Remove locations not of interest
 3. Merge all data into one CSV file
 
@@ -73,9 +73,16 @@ _TWO PLOTS -> 2015 and 2016_
 
 _DWD DATA SOURCE_
 
+Image + Link
+
 ---
 
 _DWD DATA PREPARATION_
+
+1. Replace cells like `-999` with `NaN`
+2. Remove variables not of interest
+3. Rename date column
+4. Merge all data into one CSV file
 
 ---
 

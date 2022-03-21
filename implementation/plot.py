@@ -1,6 +1,7 @@
 from cProfile import label
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from datetime import datetime, timedelta
 
 CIRCLE_SIZE = 4
@@ -17,7 +18,10 @@ def plot_scatterly(
     title: str = "",
     save: bool = True,
     show: bool = False,
+    blue_label: str = "",
+    red_label: str = "",
 ):
+
     p = df.plot.scatter(
         x=x,
         y=y,
@@ -28,6 +32,13 @@ def plot_scatterly(
     p.set_title(title)
     p.set_xlabel(x_label)
     p.set_ylabel(y_label)
+    p.legend(
+        [
+            Line2D([0], [0], color=[0, 0, 1], lw=4),
+            Line2D([0], [0], color=[1, 0, 0], lw=4),
+        ],
+        [blue_label, red_label],
+    )
     plt.ylim(0, 250)
     if save:
         plt.savefig(f"renders/images/{title.lower().replace(' ', '_')}.png")
@@ -98,6 +109,8 @@ def plot_weekdays_color_yearly(df, title: str = ""):
         x_label="Day of Week",
         y_label="NO2 [µg/m3] 1h-MW",
         title=title,
+        blue_label="2010",
+        red_label="2022",
     )
 
 
@@ -110,6 +123,8 @@ def plot_weekdays_color_monthly(df, title: str = ""):
         x_label="Day of Week",
         y_label="NO2 [µg/m3] 1h-MW",
         title=title,
+        blue_label="Dec/Jan",
+        red_label="Jun/Jul",
     )
 
 
@@ -127,14 +142,14 @@ if __name__ == "__main__":
     df_averaged_by_weekday = df.groupby(["year", "weekday"]).mean().reset_index()
     plot_weekdays_color_yearly(df_averaged_by_weekday, title=f"Averaged Weekly Cycle")
 
-    # for year in range(2010, 2022):
-    #     local_df = filter_df_years(df, include=[str(year)])
-    #     plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
+    for year in range(2010, 2022):
+        local_df = filter_df_years(df, include=[str(year)])
+        plot_weekdays_color_yearly(local_df, title=f"Weekly Cycle {year}")
 
-    # for year in range(2016, 2020):
-    #     for month in range(1, 12):
-    #         local_df = filter_df_years(df, include=[str(year)])
-    #         local_df = filter_df_months(df, include=[str(month).zfill(2)])
-    #         plot_weekdays_color_monthly(
-    #             local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
-    #         )
+    for year in range(2016, 2020):
+        for month in range(1, 13):
+            local_df = filter_df_years(df, include=[str(year)])
+            local_df = filter_df_months(df, include=[str(month).zfill(2)])
+            plot_weekdays_color_monthly(
+                local_df, title=f"Weekly Cycle {str(month).zfill(2)}.{year}"
+            )

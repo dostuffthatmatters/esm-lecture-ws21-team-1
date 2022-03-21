@@ -6,9 +6,9 @@ import warnings
 
 def create_luf_df(year: int, month: int | None, city: str):
     if month is None:
-        filename = f"data/NO2_{year}.xlsx"
+        filename = f"data/raw/NO2_{year}.xlsx"
     else:
-        filename = f"data/NO2_{year}_{str(month).zfill(2)}.xlsx"
+        filename = f"data/raw/NO2_{year}_{str(month).zfill(2)}.xlsx"
 
     if not os.path.isfile(filename):
         return None
@@ -74,4 +74,4 @@ if __name__ == "__main__":
     print(df)
     print(df.columns)
 
-    df.to_csv("data/NO2_merged.csv", na_rep="NaN", float_format="%.0f")
+    df.to_csv("data/LUF_merged.csv", na_rep="NaN", float_format="%.0f")

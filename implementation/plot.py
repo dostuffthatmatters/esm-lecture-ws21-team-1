@@ -129,7 +129,7 @@ def plot_weekdays_color_monthly(df, title: str = ""):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("data/NO2_merged.csv").set_index("Zeitpunkt")
+    df = pd.read_csv("data/LUF_merged.csv").set_index("Zeitpunkt")
 
     df["weekday"] = df.index.map(get_weekday_from_str)
     df["day"] = df.index.map(lambda x: x[0:2])

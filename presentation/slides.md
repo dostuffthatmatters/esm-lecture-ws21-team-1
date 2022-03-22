@@ -87,13 +87,6 @@ The road is 8 lanes wide at that location.
 
 **Do you think that this particular station is representative of the city/for the background?**
 
-<!--
-
-CO2 Boxes next to the station.
-TODO: What are they?
-
--->
-
 ---
 layout: cover
 ---
@@ -102,7 +95,100 @@ layout: cover
 
 ---
 
-...
+## NO2 measured on march 20th/21st
+
+All 5 Stations reached the highest NO2 concentration from morning to midday on 21 March.
+
+Station with the highest NO2 concentration: <br/>
+<span class="text-red-500 font-semibold">🚗 Landshuter Allee</span>
+
+Station with the lowest NO2 concentration: <br/>
+<span class="text-green-500 font-semibold">🌱 Johanneskirchen</span>
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/all-stations.png" class="w-full"/>
+</div>
+
+<v-click>
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/all-stations-gap.png" class="w-full"/>
+</div>
+
+</v-click>
+
+---
+
+<div class="absolute text-xl text-center" style="top: 27%; right: 1.5rem;">
+Station with the highest NO2 concentration: <br/>
+<span class="text-red-500 font-semibold">🚗 Landshuter Allee</span>
+</div>
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/map-representative-2.png" class="w-full"/>
+</div>
+
+---
+
+<div class="absolute text-xl text-center" style="top: 27%; right: 1.5rem;">
+Station with the lowest NO2 concentration: <br/>
+<span class="text-green-500 font-semibold">🌱 Johanneskirchen</span>
+</div>
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/map-representative-5.png" class="w-full"/>
+</div>
+
+---
+
+<div class="absolute text-xl text-center max-w-sm" style="bottom: 25%; right: 7.5%">
+
+The **traffic data is an average** rather than the actual measurements for the day.
+
+</div>
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/traffic-data.png" style="width:90%"/>
+</div>
+
+---
+layout: two-cols
+class: text-center
+---
+
+**Correlation between $NO_2$ concentration and traffic:**
+
+<img src="/images/section-2/weekday.png" style="height:18rem"/>
+
+One **weekend** day: <br/>Correlation coefficient = 0.386
+
+::right::
+
+<img src="/images/section-2/weekend.png" style="height:18rem; margin-top: 3.5rem;"/>
+
+One **working** day: <br/>Correlation coefficient = 0.558
+
+---
+
+**Interpolating the measured concentrations**
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/map-process.png" style="width:80%"/>
+</div>
+
+<div class="absolute mx-auto bottom-0 grid grid-cols-3 leading-snug text-center" style="z-index:-10; height: 5rem; width: 80%; left: 10%">
+<div>5 stations in Munich</div>
+<div>Munich map 20km x 20km<br/>Resolution 1km x 1km</div>
+<div>Concentration map calculated<br/>with interpolation algorithm</div>
+</div>
+
+---
+
+**Interpolating the measured concentrations**
+
+<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
+    <img src="/images/section-2/map-matrix.png" style="width:45%" class="mt-12"/>
+</div>
 
 ---
 layout: cover

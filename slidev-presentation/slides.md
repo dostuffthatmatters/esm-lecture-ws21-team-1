@@ -78,14 +78,23 @@ layout: cover
 
 ## LFU - Air Quality Data Archive
 
--   $\text{NO}_2$, $\text{PM}_{10}$, $\text{PM}_{2.5}$, $\text{O}_{3}$, $\text{CO}$, ...
--   52 Stations in Bavaria
--   Hourly data = `8760` data points per station per year
--   Since 1980 (not all stations over the whole timespan)
+
+<v-clicks>
+
+- $\text{NO}_2$, $\text{PM}_{10}$, $\text{PM}_{2.5}$, $\text{O}_{3}$, $\text{CO}$, ...
+- 52 Stations in Bavaria
+- Hourly data = 8760 data points per station per year
+- Since 1980 (not all stations over the whole timespan)
+
+</v-clicks>
 
 <br/>
 
+<v-click>
+
 **Data Source:** https://www.lfu.bayern.de/luft/immissionsmessungen/messwertarchiv
+
+</v-click>
 
 ---
 
@@ -104,9 +113,23 @@ I will talk about the data license at the end.
 
 ## LFU - Data Preparation
 
-1. Replace cells like `?`, `#` or nothing in it with `NaN`
-2. Remove locations, not of interest
-3. Merge all data into one CSV file
+<v-clicks>
+
+- Replace cells like `?`, `#` or nothing in it with `NaN`
+- Remove locations, not of interest
+- Convert $\frac{\mu g}{m^3}$ to $ppb$
+- Merge all data into one CSV file
+
+</v-clicks>
+
+<br/>
+
+<v-click>
+
+In the following, I will only look at **data between 2010 and now** and the station **at Landshuter Allee** from $\textbf{NO}_\textbf{2}$ **concentrations**.
+
+</v-click>
+
 
 <!--
 
@@ -118,25 +141,33 @@ Last signal from Moosach: 20130709
 
 ---
 
-In the following, I will only look at **data between 2010 and now** and the station **at Landshuter Allee** from $\textbf{NO}_\textbf{2}$ **concentrations**.
+<div class="top-0 left-0 absolute flex justify-center items-center w-full h-full">
+    <img src="/graphs/alltime_weekly_cycle.png" class="rounded" style="width: 96%"/>
+</div>
 
----
-
-<div class="w-full h-full flex justify-center items-center">
-    <img src="/graphs/alltime_weekly_cycle.png" class="w-full rounded"/>
+<div v-click-hide>
+<div class="right-0 absolute w-1/2 bg-white h-1/2" style="top:27%"></div>
 </div>
 
 ---
 
 **Findings:**
 
--   Daily and weekly cycle
--   Shape of the cycle did not change since 2010
--   Average concentration has been reduced by 40-50% since 2010
+<v-clicks>
+
+- Daily and weekly cycle
+- Shape of the cycle did not change since 2010
+- Average concentration has been reduced by 40-50% since 2010
+
+</v-clicks>
 
 <br/>
 
+<v-click>
+
 **Next Question:** Is there a trend by month - certain months with low/high concentrations.
+
+</v-click>
 
 <!--
 
@@ -149,7 +180,19 @@ We picked 2016, 2017, 2018, and 2019 (the 4 years before the current pandemic).
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/videos/weekly_cycle_colored_by_month.gif" class="w-xl rounded"/>
+    <img src="/videos/weekly_cycle_colored_by_month.gif" class="w-2xl rounded"/>
+</div>
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">Dec/Jan</span> - <span class="text-red-600">Jun/Jul</span></div>
+
+
+<div v-click-hide>
+    <div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-90 font-semibold text-black z-0">
+        <div class="absolute" style="top: 27.5%; right:57.5%;">2016</div>
+        <div class="absolute" style="top: 27.5%; left:57.5%;">2017</div>
+        <div class="absolute" style="bottom: 27.5%; right:57.5%;">2018</div>
+        <div class="absolute" style="bottom: 27.5%; left:57.5%;">2019</div>
+    </div>
 </div>
 
 <!--
@@ -159,8 +202,11 @@ The concentration seems to go down in the winter months and tends to rise during
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/graphs/mean_monthwise_weekly_cycle_colored_by_month.png" class="w-xl rounded"/>
+    <img src="/graphs/mean_monthwise_weekly_cycle_colored_by_month.png" class="w-2xl rounded"/>
 </div>
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">Dec/Jan</span> - <span class="text-red-600">Jun/Jul</span></div>
+
 
 <!--
 
@@ -176,11 +222,20 @@ Something not uncommon in data science: You assume something and find out that t
 
 **Findings:**
 
+<v-clicks>
+
 -   Concentration in summer months tends to be higher than in winter months in the observed period
+
+</v-clicks>
 
 <br/>
 
+<v-click>
+
 **Next Question:** Is there a correlation between weather and concentration.
+
+
+</v-click>
 
 <!--
 
@@ -194,14 +249,22 @@ Assumption: People use cars more often when it is cold or when it is raining, i.
 
 ## DWD - German Climatedata Archive
 
+<v-clicks>
+
 -   Mean temperature, mean pressure, sunshine hours, ...
 -   83 stations in Germany
 -   Daily data
 -   **Munich Airport** data since 1992
 
+</v-clicks>
+
 <br/>
 
+<v-click>
+
 **Data Source:** https://www.dwd.de/DE/leistungen/klimadatendeutschland/klarchivtagmonat ("DWD - Klimadaten Deutschland - Monats- und Tageswerte (Archiv)")
+
+</v-click>
 
 <!--
 
@@ -215,6 +278,19 @@ The DWD website's organization is rather messy so I won't show a picture of how 
     <img src="/graphs/concentration_over_weather_conditions.png" class="w-2xl rounded"/>
 </div>
 
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">2010</span> - <span class="text-red-600">2022</span></div>
+
+
+<div v-click-hide>
+    <div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-80 font-semibold text-black z-0">
+        <div class="absolute" style="top: 27.5%; right:57.5%;">Temperature</div>
+        <div class="absolute" style="top: 27.5%; left:57.5%;">Precipitation</div>
+        <div class="absolute" style="bottom: 27.5%; right:57.5%;">Sunshine Hours</div>
+        <div class="absolute" style="bottom: 27.5%; left:57.5%;">Wind Speed</div>
+    </div>
+</div>
+
 <!--
 
 The good thing: We see a correlation between wind speed and concentration. Higher wind speed -> lower concentration. Molecules get transported away faster.
@@ -226,6 +302,9 @@ There is also no more information when looking at individual years.
 -->
 
 ---
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">2010</span> - <span class="text-red-600">2022</span></div>
+
 
 <div class="w-full h-full flex justify-center items-center">
     <img src="/graphs/rolling_concentration_over_weather_conditions.png" class="w-2xl rounded"/>
@@ -241,19 +320,29 @@ The only slight trend there is a rising concentration with temperature. Only ver
 
 ---
 
-One argument for using a car: "Fewer people want to use a bike or public transport when it is cold or wet raining"
+One argument for using a car: <v-click><span class="text-green-800 font-semibold">"Not many people want to use a bike or public transport when it's cold or raining outside"</span></v-click>
 
-**Do these findings disprove this argumentation?** Is the reason for using a car really the weather or is it mainly habit and each individual's situation?
+<v-click>
+
+<span class="text-green-800 font-semibold">Do these findings disprove this argumentation?</span> Is the reason for using a car really the weather or is it mainly habit and each individual's situation?
+
+</v-click>
 
 ---
 
-## Code, cleaned data, plots, and presentation
+## Licensing and Code Repository
 
 **LUF data** is under `CC 4.0 BY` license.
 
 **DWD data** has no license except for the statement "data is freely available without any restrictions".
 
-https://github.com/dostuffthatmatters/esm-lecture-group-task
+<br/>
+
+<v-click>
+
+**Continue this analysis:** Code, cleaned data, plots, and presentation on https://github.com/dostuffthatmatters/esm-lecture-group-task
+
+</v-click>
 
 <!--
 

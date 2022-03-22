@@ -14,7 +14,7 @@
     }
 
     h2 {
-        @apply text-2xl font-semibold mb-2;
+        @apply text-2xl font-semibold mb-4;
     }
 
     h3 {
@@ -79,4 +79,20 @@
 
 a {
     @apply text-blue-600 hover:!text-blue-800;
+}
+
+:not(pre) > code:before, :not(pre) > code:after {
+    content: '' !important;
+}
+
+:not(pre) > code {
+    @apply px-1.5;
+}
+
+.slidev-layout li p {
+    @apply my-0;
+}
+
+.slidev-layout li {
+    @apply my-1;
 }

@@ -27,27 +27,18 @@ Station located at **Landshuter Allee**:
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/images/station-image-1.jpg" class="w-lg rounded"/>
-</div>
-
----
-
-<div class="w-full h-full flex justify-center items-center">
-    <img src="/images/station-image-3.jpg" class="w-lg rounded"/>
+    <img src="/images/station-image-device.png" class="w-xl rounded"/>
 </div>
 
 <!--
 
 The road is 8 lanes wide at that location.
 
-CO2 Boxes next to the station.
-TODO: What are they?
-
 -->
 
 ---
 
-## Are all the requirements of the 39. BImSchV fulfilled?
+**Are all the requirements of the 39. BImSchV fulfilled?**
 
 -   Maximum distance to the street: 10 m
 -   Minimum distance to the crossroad: 25 m
@@ -56,7 +47,52 @@ TODO: What are they?
 
 ---
 
-## Do you think that this particular station is representative of the city/for the background?
+<div class="w-full flex gap-x-2 items-center justify-center" style="height:30rem;">
+    <div class="font-semibold">59cm</div>
+    <img src="/images/station-measurement-distance.jpg" class="rounded h-full"/>
+    <img src="/images/station-measurement-height.jpg" class="rounded h-full"/>
+    <div class="font-semibold">402cm</div>
+</div>
+
+---
+
+**Are there any obstacles that could falsify the results?**
+
+---
+
+**Air filters** might falsify the measurements:
+
+<div class="w-full flex gap-x-2 items-center justify-center" style="height:20rem;">
+    <img src="/images/station-image-north.png" class="rounded h-full"/>
+    <img src="/images/station-image-south.jpg" class="rounded h-full"/>
+</div>
+
+---
+
+**Air filters** might falsify the measurements:
+
+<div class="w-full flex gap-x-2 items-center justify-center" style="height:20rem;">
+    <img src="/images/station-image-luftfilter.jpg" class="h-full rounded"/>
+</div>
+
+---
+
+**Air filters** might falsify the measurements:
+
+<div class="w-full flex gap-x-2 items-center justify-center" style="height:25rem;">
+    <img src="/images/station-image-luftfilter-cropped.jpg" class="h-full rounded"/>
+</div>
+
+---
+
+**Do you think that this particular station is representative of the city/for the background?**
+
+<!--
+
+CO2 Boxes next to the station.
+TODO: What are they?
+
+-->
 
 ---
 layout: cover
@@ -117,7 +153,6 @@ I will talk about the data license at the end.
 
 - Replace cells like `?`, `#` or nothing in it with `NaN`
 - Remove locations, not of interest
-- Convert $\frac{\mu g}{m^3}$ to $ppb$
 - Merge all data into one CSV file
 
 </v-clicks>

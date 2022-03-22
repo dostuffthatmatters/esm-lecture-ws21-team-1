@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 CIRCLE_SIZE = 4
 CIRCLE_ALPHA = 0.5
-RENDER_DESTINATION = "../slidev-presentation/public/images"
+RENDER_DESTINATION = "../presentation/public/images"
 pd.options.mode.chained_assignment = None
 plt.style.use("seaborn")
 warnings.simplefilter(action="ignore", category=FutureWarning)

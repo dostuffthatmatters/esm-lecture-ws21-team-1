@@ -1,7 +1,6 @@
 ---
-theme: default
+theme: ./theme
 layout: cover
-class: text-center
 drawings:
     persist: false
 title: Welcome to Slidev
@@ -12,28 +11,33 @@ title: Welcome to Slidev
 **Team Members:** Yichu Chen, Mei Gao, Moritz Makowski
 
 ---
+layout: cover
+---
 
-<!--
-paginate: true
--->
-
-# 1. Visit the site
+# <uim-scenery class="mr-1"/> Visit the site
 
 ---
 
 Station located at **Landshuter Allee**:
 
-![h:550 center](images/station-map.png)
+<div class="w-full flex justify-center">
+    <img src="/images/station-map.png" class="w-lg rounded"/>
+</div>
 
 ---
 
-![h:600 center](images/station-image-1.jpg)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/images/station-image-1.jpg" class="w-lg rounded"/>
+</div>
 
 ---
 
-![h:600 center](images/station-image-3.jpg)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/images/station-image-3.jpg" class="w-lg rounded"/>
+</div>
 
 <!--
+
 The road is 8 lanes wide at that location.
 
 CO2 Boxes next to the station.
@@ -49,21 +53,26 @@ TODO: What are they?
 -   Minimum distance to the crossroad: 25 m
 -   Height of the measurement inlet: 1.5 to 4 m
 
+
 ---
 
 ## Do you think that this particular station is representative of the city/for the background?
 
 ---
+layout: cover
+---
 
-# 2. Analyze the data
+# <uim-microscope class="mr-1"/> Analyze the data
 
 ---
 
 ...
 
 ---
+layout: cover
+---
 
-# 3. Additional work: **MORE DATA**
+# <uim-graph-bar class="mr-1"/> More data
 
 ---
 
@@ -80,7 +89,9 @@ TODO: What are they?
 
 ---
 
-![center h:650](images/lfu-website.png)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/images/lfu-website.png" class="w-xl rounded"/>
+</div>
 
 <!--
 "Daten" -> "Luft" -> "Messwertarchiv"
@@ -91,7 +102,7 @@ I will talk about the data license at the end.
 
 ---
 
-### LFU - Data Preparation
+## LFU - Data Preparation
 
 1. Replace cells like `?`, `#` or nothing in it with `NaN`
 2. Remove locations, not of interest
@@ -111,7 +122,9 @@ In the following, I will only look at **data between 2010 and now** and the stat
 
 ---
 
-<img src="/images/alltime_weekly_cycle.png" class="w-full" />
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/graphs/alltime_weekly_cycle.png" class="w-full rounded"/>
+</div>
 
 ---
 
@@ -135,7 +148,9 @@ We picked 2016, 2017, 2018, and 2019 (the 4 years before the current pandemic).
 
 ---
 
-![h:700 bg](/public/videos/weekly_cycle_colored_by_month.gif)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/videos/weekly_cycle_colored_by_month.gif" class="w-xl rounded"/>
+</div>
 
 <!--
 The concentration seems to go down in the winter months and tends to rise during summer.
@@ -143,7 +158,9 @@ The concentration seems to go down in the winter months and tends to rise during
 
 ---
 
-![h:700 bg](/public/images/mean_monthwise_weekly_cycle_colored_by_month.png)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/graphs/mean_monthwise_weekly_cycle_colored_by_month.png" class="w-xl rounded"/>
+</div>
 
 <!--
 
@@ -194,7 +211,9 @@ The DWD website's organization is rather messy so I won't show a picture of how 
 
 ---
 
-![h:700 bg](/public/images/concentration_over_weather_conditions.png)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/graphs/concentration_over_weather_conditions.png" class="w-2xl rounded"/>
+</div>
 
 <!--
 
@@ -208,7 +227,9 @@ There is also no more information when looking at individual years.
 
 ---
 
-![h:700 bg](/public/images/rolling_concentration_over_weather_conditions.png)
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/graphs/rolling_concentration_over_weather_conditions.png" class="w-2xl rounded"/>
+</div>
 
 <!--
 
@@ -226,21 +247,17 @@ One argument for using a car: "Fewer people want to use a bike or public transpo
 
 ---
 
+## Code, cleaned data, plots, and presentation
+
 **LUF data** is under `CC 4.0 BY` license.
 
 **DWD data** has no license except for the statement "data is freely available without any restrictions".
 
-<!--
-Therefore we can freely share cleaned-up data and all the plots.
--->
-
----
-
-**Code, cleaned data, plots, and presentation:**
-
 https://github.com/dostuffthatmatters/esm-lecture-group-task
 
 <!--
+
+Therefore we can freely share cleaned-up data and all the plots.
 
 If you want to use the same data, here is the link to our open source code which does this preparation and analysis.
 

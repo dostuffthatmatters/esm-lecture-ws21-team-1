@@ -3,3 +3,11 @@ implementation/.venv
 slides
 assignment
 marp-presentation/index.html
+
+slidev-presentation/node_modules
+slidev-presentation/.DS_Store
+slidev-presentation/dist
+slidev-presentation/*.local
+slidev-presentation/index.html
+slidev-presentation/.remote-assets
+slidev-presentation/components.d.ts

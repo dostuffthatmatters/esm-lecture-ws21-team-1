@@ -3,7 +3,7 @@ theme: ./theme
 layout: cover
 drawings:
     persist: false
-title: Welcome to Slidev
+title: esm-lecture-presentation-team-1
 ---
 
 # Team 1 (Landshuter Allee) - ESM Lecture

@@ -21,13 +21,13 @@ layout: cover
 Station located at **Landshuter Allee**:
 
 <div class="w-full flex justify-center">
-    <img src="/images/station-map.png" class="w-lg rounded"/>
+    <img src="/images/section-1/station-map.png" class="w-lg rounded"/>
 </div>
 
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/images/station-image-device.png" class="w-xl rounded"/>
+    <img src="/images/section-1/station-image-device.png" class="w-xl rounded"/>
 </div>
 
 <!--
@@ -49,8 +49,8 @@ The road is 8 lanes wide at that location.
 
 <div class="w-full flex gap-x-2 items-center justify-center" style="height:30rem;">
     <div class="font-semibold">59cm</div>
-    <img src="/images/station-measurement-distance.jpg" class="rounded h-full"/>
-    <img src="/images/station-measurement-height.jpg" class="rounded h-full"/>
+    <img src="/images/section-1/station-measurement-distance.jpg" class="rounded h-full"/>
+    <img src="/images/section-1/station-measurement-height.jpg" class="rounded h-full"/>
     <div class="font-semibold">402cm</div>
 </div>
 
@@ -63,8 +63,8 @@ The road is 8 lanes wide at that location.
 **Air filters** might falsify the measurements:
 
 <div class="w-full flex gap-x-2 items-center justify-center" style="height:20rem;">
-    <img src="/images/station-image-north.png" class="rounded h-full"/>
-    <img src="/images/station-image-south.jpg" class="rounded h-full"/>
+    <img src="/images/section-1/station-image-north.png" class="rounded h-full"/>
+    <img src="/images/section-1/station-image-south.jpg" class="rounded h-full"/>
 </div>
 
 ---
@@ -72,7 +72,7 @@ The road is 8 lanes wide at that location.
 **Air filters** might falsify the measurements:
 
 <div class="w-full flex gap-x-2 items-center justify-center" style="height:20rem;">
-    <img src="/images/station-image-luftfilter.jpg" class="h-full rounded"/>
+    <img src="/images/section-1/station-image-luftfilter.jpg" class="h-full rounded"/>
 </div>
 
 ---
@@ -80,7 +80,7 @@ The road is 8 lanes wide at that location.
 **Air filters** might falsify the measurements:
 
 <div class="w-full flex gap-x-2 items-center justify-center" style="height:25rem;">
-    <img src="/images/station-image-luftfilter-cropped.jpg" class="h-full rounded"/>
+    <img src="/images/section-1/station-image-luftfilter-cropped.jpg" class="h-full rounded"/>
 </div>
 
 ---
@@ -135,7 +135,7 @@ layout: cover
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/images/lfu-website.png" class="w-xl rounded"/>
+    <img src="/images/section-3/luf-website.png" class="w-xl rounded"/>
 </div>
 
 <!--

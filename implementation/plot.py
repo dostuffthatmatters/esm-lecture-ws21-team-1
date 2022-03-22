@@ -6,12 +6,13 @@ from datetime import datetime, timedelta
 
 CIRCLE_SIZE = 4
 CIRCLE_ALPHA = 0.5
+RENDER_DESTINATION = "../slidev-presentation/public/images"
 pd.options.mode.chained_assignment = None
 plt.style.use("seaborn")
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
 
-def plot_scatterly(
+def plot(
     df: pd.DataFrame,
     x: str = "",
     y: str = "",
@@ -51,8 +52,6 @@ def plot_scatterly(
                     list(local_df[x]), list(local_df[y]), color=month_to_rgb(month)
                 )
     plt.title(title)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
     plt.legend(
         [
             Line2D([0], [0], color=[0, 0, 1], lw=4),
@@ -61,13 +60,51 @@ def plot_scatterly(
         [blue_label, red_label],
         loc="upper right",
     )
+
     plt.ylim(0, 250)
+    if x == "temperature":
+        plt.xlim(-15, 30)
+        plt.xlabel("daily average temperature [°C]")
+    if x == "sunshine":
+        plt.xlim(0, 16)
+        plt.xlabel("daily sunshine hours [h]")
+    if x == "wind":
+        plt.xlim(0, 16)
+        plt.xlabel("daily average wind speed [m/s]")
+    if x == "precipitation":
+        plt.xlim(0, 60)
+        plt.xlabel("daily precipitation [mm]")
+    if x == "weekday":
+        plt.xticks(
+            ticks=[0, 1, 2, 3, 4, 5, 6, 7],
+            labels=[
+                "Mo 00:00",
+                "Tu 00:00",
+                "We 00:00",
+                "Th 00:00",
+                "Fr 00:00",
+                "Sa 00:00",
+                "Su 00:00",
+                "Su 24:00",
+            ],
+        )
+        plt.xlim(0, 7)
+        plt.xlabel("Day of Week")
+
+    plt.ylabel(y_label)
+
     if save:
-        plt.savefig(f"renders/images/{title.lower().replace(' ', '_')}.png")
+        save_figure(f"{title.lower().replace(' ', '_')}")
     if show:
         plt.show()
     if close:
         plt.close()
+
+
+def save_figure(title: str):
+    plt.tight_layout()
+    plt.savefig(f"{RENDER_DESTINATION}/{title}.png", dpi=100)
+    plt.close()
 
 
 def get_weekday_from_index(index):
@@ -131,7 +168,6 @@ def plot_alltime_weekly_cycle(df):
         "x": "weekday",
         "y": "München/Landshuter Allee",
         "y_label": "NO2 [µg/m3] 1h-MW",
-        "x_label": "Day of Week (0=Monday Morning, 7=Sunday Evening)",
         "color_by": "year",
         "close": False,
         "save": False,
@@ -144,19 +180,18 @@ def plot_alltime_weekly_cycle(df):
 
     # left
     plt.subplot(1, 2, 1)
-    plot_scatterly(df, **defaults, title="raw data points")
+    plot(df, **defaults, title="raw data points")
 
     # right
     plt.subplot(1, 2, 2)
-    plot_scatterly(
+    plot(
         df_averaged_by_weekday,
         **defaults,
         title="mean at each time of day",
         kind="line",
     )
 
-    plt.savefig(f"renders/images/alltime_weekly_cycle.png")
-    plt.close()
+    save_figure("alltime_weekly_cycle")
 
 
 def plot_weekly_cycle_colored_by_month(df, month):
@@ -168,7 +203,6 @@ def plot_weekly_cycle_colored_by_month(df, month):
         "x": "weekday",
         "y": "München/Landshuter Allee",
         "y_label": "NO2 [µg/m3] 1h-MW",
-        "x_label": "Day of Week (0=Monday Morning, 7=Sunday Evening)",
         "color_by": "month",
         "close": False,
         "save": False,
@@ -177,19 +211,18 @@ def plot_weekly_cycle_colored_by_month(df, month):
     for i in range(4):
         plt.subplot(2, 2, i + 1)
         local_df = filter_df_years(df, include=[str(2016 + i)])
-        plot_scatterly(
+        plot(
             local_df,
             **defaults,
         ),
-        plot_scatterly(
+        plot(
             local_df.groupby(["year", "month", "weekday"]).mean().reset_index(),
             **defaults,
             title=str(2016 + i),
             kind="line",
         )
 
-    plt.savefig(f"renders/images/weekly_cycle_colored_by_month_{month}.png")
-    plt.close()
+    save_figure(f"weekly_cycle_colored_by_month_{month}")
 
 
 def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
@@ -199,7 +232,6 @@ def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
         "x": "weekday",
         "y": "München/Landshuter Allee",
         "y_label": "NO2 [µg/m3] 1h-MW",
-        "x_label": "Day of Week (0=Monday Morning, 7=Sunday Evening)",
         "color_by": "month",
         "close": False,
         "save": False,
@@ -209,14 +241,13 @@ def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
     for i in range(4):
         plt.subplot(2, 2, i + 1)
         local_df = filter_df_years(df, include=[str(2016 + i)])
-        plot_scatterly(
+        plot(
             local_df.groupby(["year", "month", "weekday"]).mean().reset_index(),
             **defaults,
             title=str(2016 + i),
         )
 
-    plt.savefig(f"renders/images/mean_monthwise_weekly_cycle_colored_by_month.png")
-    plt.close()
+    save_figure("mean_monthwise_weekly_cycle_colored_by_month")
 
 
 def plot_concentration_over_weather(df, year=None):
@@ -232,28 +263,24 @@ def plot_concentration_over_weather(df, year=None):
 
     # upper left
     plt.subplot(2, 2, 1)
-    plot_scatterly(
-        df, x="temperature", x_label="daily average temperature [°C]", **defaults
-    )
+    plot(df, x="temperature", **defaults)
 
     # upper right
     plt.subplot(2, 2, 2)
-    plot_scatterly(
-        df, x="precipitation", x_label="daily precipitation [mm]", **defaults
-    )
+    plot(df, x="precipitation", **defaults)
 
     # lower left
     plt.subplot(2, 2, 3)
-    plot_scatterly(df, x="sunshine", x_label="daily sunshine hours", **defaults)
+    plot(df, x="sunshine", **defaults)
 
     # lower right
     plt.subplot(2, 2, 4)
-    plot_scatterly(df, x="wind", x_label="daily average wind speed [m/s]", **defaults)
+    plot(df, x="wind", **defaults)
 
-    plt.savefig(
-        f"renders/images/concentration_over_weather_conditions{('_' + str(year)) if year is not None else ''}.png"
+    save_figure(
+        "concentration_over_weather_conditions"
+        + (("_" + str(year)) if year is not None else "")
     )
-    plt.close()
 
 
 def plot_rolling_concentration_over_weather(df):
@@ -267,38 +294,36 @@ def plot_rolling_concentration_over_weather(df):
         "save": False,
     }
 
-    def plot_rolling(x, x_label):
+    def plot_rolling(x):
         for year in range(2010, 2022):
             local_df = df[df["year"] == str(year)].sort_values(by=[x])
             local_df["München/Landshuter Allee"] = local_df.rolling(500, on=x).mean()[
                 "München/Landshuter Allee"
             ]
-            plot_scatterly(
+            plot(
                 local_df,
                 x=x,
-                x_label=x_label,
                 **defaults,
                 kind="line",
             )
 
     # upper left
     plt.subplot(2, 2, 1)
-    plot_rolling("temperature", "daily average temperature [°C]")
+    plot_rolling("temperature")
 
     # upper right
     plt.subplot(2, 2, 2)
-    plot_rolling("precipitation", "daily precipitation [mm]")
+    plot_rolling("precipitation")
 
     # lower left
     plt.subplot(2, 2, 3)
-    plot_rolling("sunshine", "daily sunshine hours")
+    plot_rolling("sunshine")
 
     # lower right
     plt.subplot(2, 2, 4)
-    plot_rolling("wind", "daily average wind speed [m/s]")
+    plot_rolling("wind")
 
-    plt.savefig(f"renders/images/rolling_concentration_over_weather_conditions.png")
-    plt.close()
+    save_figure("rolling_concentration_over_weather_conditions")
 
 
 if __name__ == "__main__":

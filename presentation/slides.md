@@ -95,15 +95,21 @@ layout: cover
 
 ---
 
-## NO2 measured on march 20th/21st
+## $\text{NO}_2$ measured on march 20th/21st
 
-All 5 Stations reached the highest NO2 concentration from morning to midday on 21 March.
+All 5 Stations reached the highest $\text{NO}_2$ concentration from morning to midday on 21 March.
 
-Station with the highest NO2 concentration: <br/>
+<br/>
+
+<v-click>
+
+Station with the highest $\text{NO}_2$ concentration: <br/>
 <span class="text-red-500 font-semibold">🚗 Landshuter Allee</span>
 
-Station with the lowest NO2 concentration: <br/>
+Station with the lowest $\text{NO}_2$ concentration: <br/>
 <span class="text-green-500 font-semibold">🌱 Johanneskirchen</span>
+
+</v-click>
 
 <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
     <img src="/images/section-2/all-stations.png" class="w-full"/>
@@ -461,7 +467,7 @@ One argument for using a car: <v-click><span class="text-green-800 font-semibold
 
 <v-click>
 
-**Continue this analysis:** Code, cleaned data, plots, and presentation on https://github.com/dostuffthatmatters/esm-lecture-group-task
+**Continue this analysis:** Code, cleaned data, plots, and presentation on https://github.com/dostuffthatmatters/esm-lecture-ws21-team-1
 
 </v-click>
 

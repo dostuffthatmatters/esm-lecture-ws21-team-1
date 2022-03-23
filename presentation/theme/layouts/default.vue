@@ -12,10 +12,8 @@ const style = computed(() => handleBackground(props.background, true));
 </script>
 
 <template>
-    <div class="slidev-layout cover" :style="style">
-        <div class="my-auto w-full text-center">
-            <slot />
-        </div>
+    <div class="slidev-layout default" :style="style">
+        <slot />
         <Pagination/>
     </div>
 </template>

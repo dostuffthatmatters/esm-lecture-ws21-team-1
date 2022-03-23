@@ -48,10 +48,19 @@ The road is 8 lanes wide at that location.
 ---
 
 <div class="w-full flex gap-x-2 items-center justify-center" style="height:30rem;">
-    <div class="font-semibold">59cm</div>
+    <div class="font-semibold whitespace-nowrap">59cm &lt; 10m</div>
     <img src="/images/section-1/station-measurement-distance.jpg" class="rounded h-full"/>
     <img src="/images/section-1/station-measurement-height.jpg" class="rounded h-full"/>
-    <div class="font-semibold">402cm</div>
+    <div class="font-semibold whitespace-nowrap">402cm (1.5m &lt; inlets &lt; 4m)</div>
+</div>
+
+---
+
+<div class="font-semibold w-full text-center mb-4">Next crossroad &gt; 25m</div>
+
+<div class="w-full flex gap-x-2 items-center justify-center" style="height:20rem;">
+    <img src="/images/section-1/station-image-north.png" class="rounded h-full"/>
+    <img src="/images/section-1/station-image-south.jpg" class="rounded h-full"/>
 </div>
 
 ---
@@ -126,8 +135,9 @@ Station with the lowest $\text{NO}_2$ concentration: <br/>
 ---
 
 <div class="absolute text-xl text-center" style="top: 27%; right: 1.5rem;">
-Station with the highest NO2 concentration: <br/>
-<span class="text-red-500 font-semibold">🚗 Landshuter Allee</span>
+
+Station with the highest $\text{NO}_2$ concentration:
+<br/><span class="text-red-500 font-semibold">🚗 Landshuter Allee</span>
 </div>
 
 <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
@@ -137,8 +147,9 @@ Station with the highest NO2 concentration: <br/>
 ---
 
 <div class="absolute text-xl text-center" style="top: 27%; right: 1.5rem;">
-Station with the lowest NO2 concentration: <br/>
-<span class="text-green-500 font-semibold">🌱 Johanneskirchen</span>
+
+Station with the lowest $\text{NO}_2$ concentration:
+<br/><span class="text-green-500 font-semibold">🌱 Johanneskirchen</span>
 </div>
 
 <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center" style="z-index:-10;">
@@ -166,13 +177,15 @@ class: text-center
 
 <img src="/images/section-2/weekday.png" style="height:18rem"/>
 
-One **weekend** day: <br/>Correlation coefficient = 0.386
+One **weekend** day: <br/>
+Correlation coefficient $= 0.386$
 
 ::right::
 
 <img src="/images/section-2/weekend.png" style="height:18rem; margin-top: 3.5rem;"/>
 
-One **working** day: <br/>Correlation coefficient = 0.558
+One **working** day: <br/>
+Correlation coefficient $= 0.558$
 
 ---
 
@@ -272,8 +285,12 @@ Last signal from Moosach: 20130709
     <img src="/graphs/alltime_weekly_cycle.png" class="rounded" style="width: 96%"/>
 </div>
 
-<div v-click-hide>
 <div class="right-0 absolute w-1/2 bg-white h-1/2" style="top:27%"></div>
+
+---
+
+<div class="top-0 left-0 absolute flex justify-center items-center w-full h-full">
+    <img src="/graphs/alltime_weekly_cycle.png" class="rounded" style="width: 96%"/>
 </div>
 
 ---
@@ -307,24 +324,29 @@ We picked 2016, 2017, 2018, and 2019 (the 4 years before the current pandemic).
 ---
 
 <div class="w-full h-full flex justify-center items-center">
-    <img src="/videos/weekly_cycle_colored_by_month.gif" class="w-2xl rounded"/>
+    <img src="/videos/section-3/weekly_cycle_colored_by_month.gif" class="w-2xl rounded"/>
 </div>
 
 <div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">Dec/Jan</span> - <span class="text-red-600">Jun/Jul</span></div>
 
-
-<div v-click-hide>
-    <div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-90 font-semibold text-black z-0">
-        <div class="absolute" style="top: 27.5%; right:57.5%;">2016</div>
-        <div class="absolute" style="top: 27.5%; left:57.5%;">2017</div>
-        <div class="absolute" style="bottom: 27.5%; right:57.5%;">2018</div>
-        <div class="absolute" style="bottom: 27.5%; left:57.5%;">2019</div>
-    </div>
+<div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-90 font-semibold text-black z-0">
+    <div class="absolute" style="top: 27.5%; right:57.5%;">2016</div>
+    <div class="absolute" style="top: 27.5%; left:57.5%;">2017</div>
+    <div class="absolute" style="bottom: 27.5%; right:57.5%;">2018</div>
+    <div class="absolute" style="bottom: 27.5%; left:57.5%;">2019</div>
 </div>
 
 <!--
 The concentration seems to go down in the winter months and tends to rise during summer.
 -->
+
+---
+
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/videos/section-3/weekly_cycle_colored_by_month.gif" class="w-2xl rounded"/>
+</div>
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">Dec/Jan</span> - <span class="text-red-600">Jun/Jul</span></div>
 
 ---
 
@@ -405,17 +427,13 @@ The DWD website's organization is rather messy so I won't show a picture of how 
     <img src="/graphs/concentration_over_weather_conditions.png" class="w-2xl rounded"/>
 </div>
 
-
 <div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">2010</span> - <span class="text-red-600">2022</span></div>
 
-
-<div v-click-hide>
-    <div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-80 font-semibold text-black z-0">
-        <div class="absolute" style="top: 27.5%; right:57.5%;">Temperature</div>
-        <div class="absolute" style="top: 27.5%; left:57.5%;">Precipitation</div>
-        <div class="absolute" style="bottom: 27.5%; right:57.5%;">Sunshine Hours</div>
-        <div class="absolute" style="bottom: 27.5%; left:57.5%;">Wind Speed</div>
-    </div>
+<div class="absolute w-full h-full bg-white top-0 left-0 bg-opacity-80 font-semibold text-black z-0">
+    <div class="absolute" style="top: 27.5%; right:57.5%;">Temperature</div>
+    <div class="absolute" style="top: 27.5%; left:57.5%;">Precipitation</div>
+    <div class="absolute" style="bottom: 27.5%; right:57.5%;">Sunshine Hours</div>
+    <div class="absolute" style="bottom: 27.5%; left:57.5%;">Wind Speed</div>
 </div>
 
 <!--
@@ -430,8 +448,15 @@ There is also no more information when looking at individual years.
 
 ---
 
+<div class="w-full h-full flex justify-center items-center">
+    <img src="/graphs/concentration_over_weather_conditions.png" class="w-2xl rounded"/>
+</div>
+
 <div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">2010</span> - <span class="text-red-600">2022</span></div>
 
+---
+
+<div class="absolute font-semibold z-10" style="top: 2rem; left:2rem;"><span class="text-blue-600">2010</span> - <span class="text-red-600">2022</span></div>
 
 <div class="w-full h-full flex justify-center items-center">
     <img src="/graphs/rolling_concentration_over_weather_conditions.png" class="w-2xl rounded"/>

@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 CIRCLE_SIZE = 4
 CIRCLE_ALPHA = 0.5
-RENDER_DESTINATION = "../presentation/public/images"
+RENDER_DESTINATION = "../presentation/public/graphs"
 pd.options.mode.chained_assignment = None
 plt.style.use("seaborn")
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -163,7 +163,7 @@ def month_to_rgb(m):
 
 def plot_alltime_weekly_cycle(df):
     plt.rcParams["figure.figsize"] = (15, 5)
-    plt.suptitle("Air Quality at München/Landshuter Allee - Weekly Cycle", fontsize=15)
+    plt.suptitle("Alltime weekly cycle - München/Landshuter Allee", fontsize=15)
     defaults = {
         "x": "weekday",
         "y": "München/Landshuter Allee",
@@ -197,7 +197,8 @@ def plot_alltime_weekly_cycle(df):
 def plot_weekly_cycle_colored_by_month(df, month):
     plt.rcParams["figure.figsize"] = (12, 9)
     plt.suptitle(
-        f"Air Quality at München/Landshuter Allee - Month {month}", fontsize=15
+        f"Monthly mean at each time of week - München/Landshuter Allee - Month {month}",
+        fontsize=15,
     )
     defaults = {
         "x": "weekday",
@@ -227,7 +228,9 @@ def plot_weekly_cycle_colored_by_month(df, month):
 
 def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
     plt.rcParams["figure.figsize"] = (12, 9)
-    plt.suptitle(f"Air Quality at München/Landshuter Allee", fontsize=15)
+    plt.suptitle(
+        f"Monthly mean at each time of week - München/Landshuter Allee", fontsize=15
+    )
     defaults = {
         "x": "weekday",
         "y": "München/Landshuter Allee",
@@ -252,7 +255,7 @@ def plot_mean_monthwise_weekly_cycle_colored_by_month(df):
 
 def plot_concentration_over_weather(df, year=None):
     plt.rcParams["figure.figsize"] = (12, 9)
-    plt.suptitle("Air Quality at München/Landshuter Allee", fontsize=15)
+    plt.suptitle("Raw data points - München/Landshuter Allee", fontsize=15)
     defaults = {
         "y": "München/Landshuter Allee",
         "y_label": "NO2 [µg/m3] 1h-MW",
@@ -285,7 +288,7 @@ def plot_concentration_over_weather(df, year=None):
 
 def plot_rolling_concentration_over_weather(df):
     plt.rcParams["figure.figsize"] = (12, 9)
-    plt.suptitle("Air Quality at München/Landshuter Allee", fontsize=15)
+    plt.suptitle("Rolling mean - München/Landshuter Allee", fontsize=15)
     defaults = {
         "y": "München/Landshuter Allee",
         "y_label": "NO2 [µg/m3] 1h-MW",
